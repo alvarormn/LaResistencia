@@ -17,10 +17,9 @@ public class singIn {
 		if(os == "Windows 10") {
 			System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
 		} else {
-			
+			System.setProperty("webdriver.chrome.driver", "./chromedriver");
 		}
-		System.out.println(os);
-		System.setProperty("webdriver.chrome.driver", "./chromedriver");
+		
 		
 		ChromeOptions options = new ChromeOptions();
 
