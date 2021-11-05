@@ -1,20 +1,26 @@
 package laResistencia;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 import java.time.Duration;
 
 public class singIn {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.setProperty("webdriver.chrome.driver", "./chromedriver 3");
+		
+		String os = getOperatingSystem();
+		if(os == "Windows 10") {
+			System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+		} else {
+			
+		}
+		System.out.println(os);
+		System.setProperty("webdriver.chrome.driver", "./chromedriver");
 		
 		ChromeOptions options = new ChromeOptions();
 
@@ -39,11 +45,8 @@ public class singIn {
 			
 			wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")));
 			WebElement chaptcha = more_wait.until(ExpectedConditions.elementToBeClickable(By.className("recaptcha-checkbox-border")));
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
 			chaptcha.click();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
 			//driver.switchTo().defaultContent();
-
 			driver.findElement(By.className("gform_button")).click();
 
 		} finally {
@@ -52,6 +55,17 @@ public class singIn {
 		}
 		  
 
+	}
+	
+	private static void If(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static String getOperatingSystem() {
+	    String os = System.getProperty("os.name");
+	    // System.out.println("Using System Property: " + os);
+	    return os;
 	}
 
 }
